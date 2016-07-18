@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "mongodb": "mongodb://localhost:27017/budtheory-api",
+  "mongodb": "mongodb://dyscrete:kricket40@ds023475.mlab.com:23475/budtheory",
   "public": "../public/",
   "auth": {
     "token": {

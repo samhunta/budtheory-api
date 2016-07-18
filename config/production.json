@@ -1,7 +1,7 @@
 {
   "host": "api-app.feathersjs.com",
   "port": 80,
-  "mongodb": "DATABASE_URL",
+  "mongodb": "mongodb://dyscrete:kricket40@ds023475.mlab.com:23475/budtheory",
   "public": "../public/",
   "auth": {
     "token": {
