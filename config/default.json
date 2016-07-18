@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/budtheory-api",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "I6O8WJ3SMbJiFHW6gVm9CQewamkQXp5cBdZFUksQIrMLgfj3pHV1qbqDucl+cXJKeYylscZ+kX7BTJFpzIpOLA=="
+    },
+    "local": {}
+  }
+}
