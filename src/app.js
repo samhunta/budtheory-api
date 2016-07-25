@@ -31,6 +31,11 @@ app.use(compress())
   .configure(socketio())
   .configure(services)
   .use(function (req, res, next) {
+    Object.keys(res.headers).forEach((key) => {
+      if (key.indexOf('Access-Control') === 0) {
+        res.removeHeader(key)
+      }
+    })
     res.set('Access-Control-Request-Method', req.method.toUpperCase())
     res.set('Access-Control-Expose-Headers', 'x-set-cookie, content-type')
     res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
