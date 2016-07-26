@@ -29,6 +29,8 @@ app.use(compress())
   .configure(hooks())
   .configure(rest())
   .configure(socketio())
+  .use('/*', api_v0)
+  .configure(middleware)
   .configure(services)
   .use(function (req, res, next) {
     Object.keys(res.headers).forEach((key) => {
@@ -41,7 +43,5 @@ app.use(compress())
     res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
     next()
   })
-  .use('/*', api_v0)
-  .configure(middleware)
 
 module.exports = app
