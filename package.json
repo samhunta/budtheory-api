@@ -4,9 +4,15 @@
   "version": "0.0.6",
   "homepage": "",
   "private": true,
-  "main": "src/",
+  "main": "lib/index.js",
   "keywords": [
     "feathers"
+  ],
+  "files": [
+    "lib",
+    "public",
+    "config",
+    "test"
   ],
   "license": "MIT",
   "repository": {},
@@ -17,6 +23,10 @@
     "node": ">= 0.12.0"
   },
   "scripts": {
+    "prepublish": "npm run build",
+    "update": "npm run prepublish && git add . && git commit -m Updated version",
+    "patch": "npm version patch && npm run update",
+    "build": "babel -d lib/ src/",
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint src/. test/. --config",
     "start": "NODE_ENV=production babel-node src/server",
@@ -27,7 +37,6 @@
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
-    "express-http-proxy": "^0.7.4",
     "express-request-proxy": "git+https://github.com/samhunta/express-request-proxy.git",
     "feathers": "^2.0.1",
     "feathers-authentication": "^0.7.9",
