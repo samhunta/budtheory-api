@@ -44,4 +44,6 @@ module.exports = function(options) {
       res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
       next()
     })
+
+  return app
 }

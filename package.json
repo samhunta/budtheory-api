@@ -24,7 +24,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "update": "npm run prepublish && git add . && git commit -m Updated version",
+    "update": "git add -A . && git commit && npm run prepublish",
     "patch": "npm version patch && npm run update",
     "build": "babel -d lib/ src/",
     "test": "npm run jshint && npm run mocha",
