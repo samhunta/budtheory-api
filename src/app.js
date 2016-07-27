@@ -15,33 +15,33 @@ const middleware = require('./middleware')
 const services = require('./services')
 const api_v0 = require('./api_v0')
 
-const app = feathers()
+module.exports = function(options) {
+  const app = feathers()
 
-app.configure(configuration(path.join(__dirname, '..')))
+  app.configure(configuration(path.join(__dirname, '..')))
 
-app.use(compress())
-  .options('*', cors())
-  .use(cors())
-  .use(favicon(path.join(app.get('public'), 'favicon.ico')))
-  .use('/', serveStatic(app.get('public')))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  .configure(hooks())
-  .configure(rest())
-  .configure(socketio())
-  .use('/*', api_v0)
-  .configure(middleware)
-  .configure(services)
-  .use(function (req, res, next) {
-    Object.keys(res.headers).forEach((key) => {
-      if (key.indexOf('Access-Control') === 0) {
-        res.removeHeader(key)
-      }
+  app.use(compress())
+    .options('*', cors())
+    .use(cors())
+    .use(favicon(path.join(app.get('public'), 'favicon.ico')))
+    .use('/', serveStatic(app.get('public')))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .configure(hooks())
+    .configure(rest())
+    .configure(socketio())
+    .use('/*', api_v0(options))
+    .configure(middleware)
+    .configure(services)
+    .use(function (req, res, next) {
+      Object.keys(res.headers).forEach((key) => {
+        if (key.indexOf('Access-Control') === 0) {
+          res.removeHeader(key)
+        }
+      })
+      res.set('Access-Control-Request-Method', req.method.toUpperCase())
+      res.set('Access-Control-Expose-Headers', 'x-set-cookie, content-type')
+      res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
+      next()
     })
-    res.set('Access-Control-Request-Method', req.method.toUpperCase())
-    res.set('Access-Control-Expose-Headers', 'x-set-cookie, content-type')
-    res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
-    next()
-  })
-
-module.exports = app
+}
