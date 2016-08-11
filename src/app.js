@@ -13,7 +13,6 @@ const bodyParser = require('body-parser')
 const socketio = require('feathers-socketio')
 const middleware = require('./middleware')
 const services = require('./services')
-const api_v0 = require('./api_v0')
 
 module.exports = function(options) {
   const app = feathers()
@@ -30,9 +29,8 @@ module.exports = function(options) {
     .configure(hooks())
     .configure(rest())
     .configure(socketio())
-    .use('/*', api_v0(options))
-    .configure(middleware)
     .configure(services)
+    .configure(middleware(options))
     .use(function (req, res, next) {
       Object.keys(res.headers).forEach((key) => {
         if (key.indexOf('Access-Control') === 0) {
