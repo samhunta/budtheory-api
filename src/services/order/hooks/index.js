@@ -18,10 +18,10 @@ exports.before = {
           user: onfleet.token,
         },
       }, (err, ofres, body) => {
-        if (err) return reject(err)
         if (body.error) {
           return hooks.disable(hook, ...args)
         }
+
         hook.data.order = body
         resolve(hook)
       });
