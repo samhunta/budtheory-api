@@ -3,6 +3,10 @@
   "port": 80,
   "mongodb": "mongodb://budtheory:budtheory@ds023475.mlab.com:23475/budtheory",
   "public": "../public/",
+  "onfleet": {
+    "endpoint": "https://onfleet.com/api/v2",
+    "token": "38716691cc66690bbcb2965ea5ca2cd4"
+  },
   "auth": {
     "token": {
       "secret": "FEATHERS_AUTH_SECRET"
