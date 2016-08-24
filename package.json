@@ -20,9 +20,10 @@
   "contributors": [],
   "bugs": {},
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 4.12.0"
   },
   "scripts": {
+    "preinstall": "npm run prepublish",
     "prepublish": "npm run build",
     "update": "npm run prepublish && git add -A . && git commit",
     "patch": "npm run update && npm version patch",
@@ -37,7 +38,7 @@
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
-    "express-request-proxy": "git+https://github.com/samhunta/express-request-proxy.git",
+    "express-request-proxy": "samhunta/express-request-proxy",
     "feathers": "^2.0.1",
     "feathers-authentication": "^0.7.9",
     "feathers-configuration": "^0.2.3",

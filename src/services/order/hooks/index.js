@@ -5,7 +5,7 @@ const hooks = require('feathers-hooks')
 var request = require('request')
 
 exports.before = {
-  find: [hooks.disable()],
+  // find: [hooks.disable()],
   create(hook, ...args) {
     const onfleet = hook.app.get('onfleet')
     return new Promise((resolve, reject) => {
@@ -21,10 +21,10 @@ exports.before = {
         if (body.error) {
           return hooks.disable(hook, ...args)
         }
+      })
 
-        hook.data.order = body
-        resolve(hook)
-      });
+      hook.data.order = hook.data
+      resolve(hook)
     });
   },
 

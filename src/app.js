@@ -19,6 +19,10 @@ module.exports = function(options) {
 
   app.configure(configuration(path.join(__dirname, '..')))
 
+  if (process.env.MONGODB_URL) {
+    app.set('mongodb', process.env.MONGODB_URL)
+  }
+
   app.use(compress())
     .options('*', cors())
     .use(cors())
@@ -37,6 +41,8 @@ module.exports = function(options) {
           res.removeHeader(key)
         }
       })
+
+      res.set('Access-Control-Allow-Origin', '*')
       res.set('Access-Control-Request-Method', req.method.toUpperCase())
       res.set('Access-Control-Expose-Headers', 'x-set-cookie, content-type')
       res.set('Access-Control-Allow-Headers', 'x-cookie, content-length, content-type')
